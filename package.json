@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "bin": {
-    "craftreact": "cli.js"
+    "create-craft-react-app": "cli.js"
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
