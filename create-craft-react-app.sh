@@ -8,18 +8,27 @@ fi
 echo "installing craft" &&
 composer create-project craftcms/craft $1 &&
 
+cd $1 &&
+
+composer require spicyweb/craft-neo --no-update;
+composer require craftcms/redactor --no-update;
+composer require nystudio107/craft-seomatic --no-update;
+composer require nystudio107/craft-imageoptimize --no-update;
+composer require verbb/super-table --no-update;
+composer update;
+
 echo "installing create-react-app" &&
-npx create-react-app $1/react-app &&
+npx create-react-app ./react-app &&
 
 echo "merging craft and create-react-app .gitignore files" &&
-echo "\n" >> $1/.gitignore &&
-cat $1/react-app/.gitignore >> $1/.gitignore &&
+echo "\n" >> ./.gitignore &&
+cat ./react-app/.gitignore >> ./.gitignore &&
 
 echo "moving files around"
-rm $1/react-app/.gitignore &&
+rm ./react-app/.gitignore &&
 shopt -s dotglob &&
-mv $1/react-app/* $1 &&
-rm -r $1/react-app
+mv ./react-app/* . &&
+rm -r ./react-app
 
 echo "writing .htaccess file"
 echo $'<IfModule mod_rewrite.c>
@@ -37,13 +46,13 @@ echo $'<IfModule mod_rewrite.c>
     RewriteEngine On
     RewriteCond %{REQUEST_FILENAME} !-f
     RewriteRule (.*) http://localhost:3001/$1 [P]
-</IfModule>' > $1/web/.htaccess &&
+</IfModule>' > ./web/.htaccess &&
 
 echo "writing routes file" &&
 echo $'<?php
 return [
   'api' => 'graphql/api',
 ];
-' > $1/config/routes.php &&
+' > ./config/routes.php &&
 
 echo "done"
