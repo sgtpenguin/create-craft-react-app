@@ -1,0 +1,52 @@
+{
+  "name": "cra-template-craft-react",
+  "version": "0.1.0",
+  "private": true,
+  "dependencies": {
+    "@apollo/react-hooks": "^4.0.0",
+    "@testing-library/jest-dom": "^4.2.4",
+    "@testing-library/react": "^9.3.2",
+    "@testing-library/user-event": "^7.1.2",
+    "apollo-boost": "^0.4.9",
+    "dangerously-set-html-content": "^1.0.8",
+    "graphql": "^15.3.0",
+    "lazysizes": "^5.2.2",
+    "node-sass": "^4.14.1",
+    "react": "^16.13.1",
+    "react-dom": "^16.13.1",
+    "react-inlinesvg": "^2.0.1",
+    "react-router-dom": "^5.2.0",
+    "react-router-scroll-memory": "^2.0.7",
+    "react-scripts": "3.4.3",
+    "react-spring": "^8.0.27"
+  },
+  "main": "template.json",
+  "files": [
+    "template",
+    "template.json"
+  ],
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test",
+    "eject": "react-scripts eject",
+    "clean-files": "rm -rf ./template/public ./template/src ./template/.jsconfig.json",
+    "copy-files": "cp -a ./src/. template/src && cp -a ./public/. template/public && cp -a ./jsconfig.json template/.jsconfig.json",
+    "prepublish": "yarn clean-files && yarn copy-files"
+  },
+  "eslintConfig": {
+    "extends": "react-app"
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  }
+}

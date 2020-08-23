@@ -18,7 +18,9 @@ composer require verbb/super-table --no-update;
 composer update;
 
 echo "installing create-react-app" &&
-npx create-react-app ./react-app &&
+SCRIPTPATH="$( cd "$(dirname "$0")" >/dev/null 2>&1 ; pwd -P )" &&
+echo $SCRIPTPATH && 
+npx create-react-app react-app --template file:$SCRIPTPATH/cra-template-craft-react &&
 
 echo "merging craft and create-react-app .gitignore files" &&
 echo "\n" >> ./.gitignore &&
