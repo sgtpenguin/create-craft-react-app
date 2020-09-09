@@ -53,7 +53,7 @@ echo $'<IfModule mod_rewrite.c>
 echo "writing routes file" &&
 echo $'<?php
 return [
-  'api' => 'graphql/api',
+  "api" => "graphql/api",
 ];
 ' > ./config/routes.php &&
 

@@ -51,7 +51,7 @@ fs.mkdir(directoryPath, { recursive: true }, function () {
 
   const queryData = new Uint8Array(
     Buffer.from(
-      `import { idtype } from "querypieces";\n\nexport default \`\n...on caseStudy_${componentName}_BlockType {\n\t\${idtype}\n}\n\``
+      `import { idtype } from "querypieces";\n\nexport default \`\n...on pageBuilder_${componentName}_BlockType {\n\t\${idtype}\n}\n\``
     )
   );
   fs.writeFile(path.resolve(directoryPath, `query.js`), queryData, (err) => {

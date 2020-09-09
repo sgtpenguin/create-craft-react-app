@@ -26,7 +26,7 @@ fs.mkdir(directoryPath, { recursive: true }, function () {
 
   const componentData = new Uint8Array(
     Buffer.from(
-      `import React from "react"\nimport styles from "./${handle}.module.scss"\n\nconst ${ComponentName} = () => {\n return <div>${ComponentName}</div>\n}\n\nexport default ${ComponentName}`
+      `import React from "react"\nimport styles from "./${handle}.module.scss"\n\nconst ${ComponentName} = () => {\n return <div className={styles.element}>${ComponentName}</div>\n}\n\nexport default ${ComponentName}`
     )
   );
   fs.writeFile(
