@@ -1,8 +1,10 @@
 import { idtype } from "querypieces";
 
-export default `
+const query = `
 ...on pageBuilder_richText_BlockType {
 	${idtype}
 	richText
 }
 `;
+
+export default query;
