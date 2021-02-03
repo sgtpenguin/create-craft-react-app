@@ -11,6 +11,7 @@ To create a new project:
 - Create an empty database for you project
 - Put database details into .env
 - Point a hostname to the /web folder
+- In `package.json` update the `proxy` parameter to your hostname
 - Navigate to http://your-hostname.test/admin and install craft
 - At the bottom of the admin panel, click upgrade to craft pro and install as a trial.
 - Go to settings/plugins and install all the plugins

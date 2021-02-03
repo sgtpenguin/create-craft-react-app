@@ -17,6 +17,7 @@
     },
     "scripts": {
       "hello": "echo 'hi'"
-    }
+    },
+    "proxy": "http://your-hostname.test"
   }
 }
