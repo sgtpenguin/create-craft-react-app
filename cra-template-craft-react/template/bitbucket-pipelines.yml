@@ -1,0 +1,16 @@
+image: therealsgtpenguin/docker-php-composer-node
+
+pipelines:
+  branches:
+    master:
+      - step:
+          caches:
+            - node
+            - vendor
+          script:
+            - composer install
+            - yarn && yarn build
+            - rsync -a --filter=':- ./.deployignore' ./ user@address:~/path/to/app
+definitions:
+  caches:
+    vendor: vendor
