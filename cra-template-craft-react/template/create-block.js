@@ -2,7 +2,7 @@ const fs = require("fs");
 const path = require("path");
 const args = process.argv.slice(2);
 
-const localPath = args[0];
+const localPath = args[0] + "-block";
 
 const paths = localPath.split(/\//);
 const handle = paths[paths.length - 1];
@@ -49,9 +49,11 @@ fs.mkdir(directoryPath, { recursive: true }, function () {
     }
   );
 
+  const componentNameSansBlock = componentName.replace("Block", "");
+
   const queryData = new Uint8Array(
     Buffer.from(
-      `import { idtype } from "querypieces";\n\nexport default \`\n...on pageBuilder_${componentName}_BlockType {\n\t\${idtype}\n}\n\``
+      `import { idtype } from "querypieces";\n\nexport default \`\n...on pageBuilder_${componentNameSansBlock}_BlockType {\n\t\${idtype}\n}\n\``
     )
   );
   fs.writeFile(path.resolve(directoryPath, `query.js`), queryData, (err) => {
@@ -66,11 +68,11 @@ fs.mkdir(directoryPath, { recursive: true }, function () {
     const newData = data
       .replace(
         "/* import-cursor */",
-        `import ${componentName} from "./${handle}";\n\/* import-cursor *\/`
+        `import ${componentNameSansBlock} from "./${handle}";\n\/* import-cursor *\/`
       )
       .replace(
         "/* object-cursor */",
-        `${componentName},\n  \/* object-cursor *\/`
+        `${componentNameSansBlock},\n  \/* object-cursor *\/`
       );
 
     fs.writeFile(blocksPath, newData, (err) => {
@@ -86,11 +88,11 @@ fs.mkdir(directoryPath, { recursive: true }, function () {
     const newData = data
       .replace(
         "/* import-cursor */",
-        `import ${componentName} from "./${handle}/query";\n\/* import-cursor *\/`
+        `import ${componentNameSansBlock} from "./${handle}/query";\n\/* import-cursor *\/`
       )
       .replace(
         "/* object-cursor */",
-        `${componentName},\n  \/* object-cursor *\/`
+        `${componentNameSansBlock},\n  \/* object-cursor *\/`
       );
 
     fs.writeFile(queryPath, newData, (err) => {

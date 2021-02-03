@@ -1,9 +1,11 @@
 import React from "react";
 
 //content blocks
+import richText from "./rich-text-block";
 /* import-cursor */
 
 const components = {
+  richText,
   /* object-cursor */
 };
 
